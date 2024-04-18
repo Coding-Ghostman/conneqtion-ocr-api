@@ -1,13 +1,28 @@
+#!/bin/bash
+
+# Update package lists
 sudo apt-get update
+
+# Remove old package lists (optional)
 sudo rm -fR /var/lib/apt/lists/*
+
+# Update again to refresh package lists after removal (optional)
 sudo apt update
-sudo apt-get install python-software-properties
-sudo apt-get install software-properties-common
-sudo add-apt-repository --remove ppa:alex-p/tesseract-ocr5
+
+# Install prerequisites
+sudo apt-get install -y python-software-properties software-properties-common
+
+# Remove the specific repository
+sudo add-apt-repository --remove -y ppa:alex-p/tesseract-ocr5
+
+# Update package lists after repository removal
 sudo apt-get update
-sudo apt install -y tesseract-ocr
-sudo apt-get install tesseract-ocr-eng
-sudo apt-get update
-sudo apt install poppler-utils
-echo tesseract --version
+
+# Install Tesseract OCR
+sudo apt install -y tesseract-ocr tesseract-ocr-eng
+
+# Install Poppler utils without user interaction
+sudo apt-get install -y poppler-utils
+
+# Display Tesseract version
 tesseract --version
