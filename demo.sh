@@ -16,6 +16,7 @@ sudo add-apt-repository -y ppa:alex-p/tesseract-ocr5
 # Update package lists after repository removal
 sudo apt-get update
 sudo apt-get install -y libc6
+RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 # Install Tesseract OCR
 sudo apt-get install -y tesseract-ocr tesseract-ocr-eng
 
