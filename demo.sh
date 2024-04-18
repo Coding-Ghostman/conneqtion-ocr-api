@@ -21,6 +21,7 @@ sudo apt-get install -y tesseract-ocr tesseract-ocr-eng
 
 # Install Poppler utils without user interaction
 sudo apt-get install -y poppler-utils
+sudo apt install libgl1-mesa-glx
 echo "Everything OK"
 
 # Display Tesseract version
