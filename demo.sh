@@ -15,7 +15,7 @@ sudo add-apt-repository -y ppa:alex-p/tesseract-ocr5
 
 # Update package lists after repository removal
 sudo apt-get update
-
+sudo apt-get install -y libc6
 # Install Tesseract OCR
 sudo apt-get install -y tesseract-ocr tesseract-ocr-eng
 
@@ -24,5 +24,5 @@ sudo apt-get install -y poppler-utils
 sudo apt-get install -y libgl1-mesa-glx
 echo "Everything OK"
 
-# Display Tesseract version
-tesseract --version
+# # Display Tesseract version
+# tesseract --version
