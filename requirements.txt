@@ -1,0 +1,8 @@
+pdf2image
+langchain_community
+pytesseract
+langchain-mistralai
+opencv-python
+python-dotenv
+fastapi
+uvicorn
