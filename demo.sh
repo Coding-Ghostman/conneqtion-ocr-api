@@ -21,13 +21,13 @@ sudo apt-get install -y poppler-utils
 sudo apt-get install -y libgl1-mesa-glx
 sudo apt-get install -y libc6
 
-exho "-------------------------------------------------"
+echo ".............................................................."
 echo "NIX_ENV"
-exho "-------------------------------------------------"
+echo ".............................................................."
 nix-env -iA iconv -f https://github.com/NixOS/nixpkgs/archive/9957cd48326fe8dbd52fdc50dd2502307f188b0d.tar.gz
-exho "-------------------------------------------------"
+echo ".............................................................."
 echo "NIX_SHELL"
-exho "-------------------------------------------------"
+echo ".............................................................."
 nix-shell -p iconv -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/9957cd48326fe8dbd52fdc50dd2502307f188b0d.tar.gz
 
 mkdir converted_images
