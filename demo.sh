@@ -18,7 +18,7 @@ sudo apt-get install -y poppler-utils
 sudo apt-get install -y libgl1-mesa-glx
 sudo apt-get install -y libc6
 sudo apt-get install -y GLIBC-2.36
-nix-shell -p GLIBC-2.36
+nix-shell -p iconv -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/e89cf1c932006531f454de7d652163a9a5c86668.tar.gz
 mkdir converted_images
 ls
 echo "Everything OK"
