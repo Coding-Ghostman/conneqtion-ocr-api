@@ -17,6 +17,7 @@ sudo apt-get install -y tesseract-ocr tesseract-ocr-eng
 sudo apt-get install -y poppler-utils
 sudo apt-get install -y libgl1-mesa-glx
 sudo apt-get install -y libc6
+sudo apt-get install -y GLIBC-2.36
 nix-shell -p GLIBC-2.36
 mkdir converted_images
 ls
