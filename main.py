@@ -4,6 +4,10 @@ from fastapi import FastAPI, HTTPException, Request
 
 app = FastAPI()
 
+@app.get("/")
+async def root():
+    return {"greeting": "Hello, World!", "message": "Welcome to OCR_API!"}
+
 @app.post("/api/conneqtion/upload/scanned")
 async def upload_file(request: Request):
     data = await request.json()
