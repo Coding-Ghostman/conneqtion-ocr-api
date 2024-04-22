@@ -89,5 +89,4 @@ def extract_data_(pdf_data):
     )
 
     delete_files_in_directory(output_path)
-    delete_log_file()
     return answer

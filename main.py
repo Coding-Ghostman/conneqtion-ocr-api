@@ -2,15 +2,12 @@ from ocr_processor import extract_data_
 from base64 import b64decode
 from fastapi import FastAPI, HTTPException, Request
 from logger import setup_logger
-from pytesseract import pytesseract
+
 from fastapi.middleware.cors import CORSMiddleware
-
 app = FastAPI()
-
 origins = [
     "*"
 ]
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -19,9 +16,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+app = FastAPI()
+
 @app.post("/api/conneqtion/upload/scanned")
 async def upload_file(request: Request):
-    print(pytesseract.get_tesseract_version())
     data = await request.json()
     try:
         if 'file'not in data:
@@ -31,4 +30,4 @@ async def upload_file(request: Request):
         return extracted_data
     except Exception as e:
         logger = setup_logger()
-        logger.error(f"Error: " + e)
+        logger.error(f"Error: " + str(e))

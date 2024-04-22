@@ -12,10 +12,3 @@ def setup_logger(name = "System Logs", log_file = "system_logs.log", level=loggi
 
     return logger
 
-val = setup_logger("mylogger")
-val.info("checking stuff")
-val.warning("checking other stuff")
-val.error("Error mate")
-val.critical("This is critical")
-
-

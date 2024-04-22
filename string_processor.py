@@ -32,7 +32,10 @@ def extract_data_between_words(text, word1, word2):
     )
     if pattern:
         matches = pattern.findall(text)
-        return word1 + matches[0]
+        if matches:
+            return word1 + matches[0]
+        else:
+            return word1 + matches
 
 
 def get_detaildescription(final_text):
