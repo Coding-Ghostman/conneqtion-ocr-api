@@ -19,6 +19,7 @@ cmds = [
   'tar -xvzf glibc-2.36.tar.gz',
   'mkdir build',
   'mkdir glibc-2.36-install',
+  'ls',
   'cd build',
   '~/glibc/glibc-2.36/configure --prefix=$HOME/glibc/glibc-2.36-install',
   'make',
