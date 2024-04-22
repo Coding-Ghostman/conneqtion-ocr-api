@@ -2,6 +2,7 @@ pdf2image
 langchain_community
 pytesseract
 langchain-mistralai
+langchain-openai
 opencv-python-headless
 python-dotenv
 fastapi
