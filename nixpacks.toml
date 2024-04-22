@@ -1,0 +1,15 @@
+[phases.setup]
+cmds = [
+  'apt-get update',
+  'apt-get install software-properties-common',
+  'add-apt-repository --remove ppa:alex-p/tesseract-ocr',
+  'apt-get install -y --no-install-recommends ffmpeg espeak libavcodec-extra',
+  'apt-get install -y ffmpeg libsm6 libxext6 libc6',
+  'apt-get install -y tesseract-ocr',
+  'apt-get install libtesseract-dev',
+  'apt-get install -y poppler-utils',
+  'mkdir converted_images',
+  'echo "Everything OK"',
+  'tesseract --version']
+  
+nixPkgs = ['python310']
