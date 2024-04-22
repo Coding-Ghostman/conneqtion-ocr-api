@@ -3,8 +3,21 @@ from base64 import b64decode
 from fastapi import FastAPI, HTTPException, Request
 from logger import setup_logger
 from pytesseract import pytesseract
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+origins = [
+    "*"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/api/conneqtion/upload/scanned")
 async def upload_file(request: Request):
