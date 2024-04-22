@@ -2,11 +2,13 @@ from ocr_processor import extract_data_
 from base64 import b64decode
 from fastapi import FastAPI, HTTPException, Request
 from logger import setup_logger
+from pytesseract import pytesseract
 
 app = FastAPI()
 
 @app.post("/api/conneqtion/upload/scanned")
 async def upload_file(request: Request):
+    print(pytesseract.get_tesseract_version())
     data = await request.json()
     try:
         if 'file'not in data:
