@@ -11,6 +11,11 @@ def delete_files_in_directory(directory_path):
    except OSError:
      print("Error occurred while deleting files.")
 
+def delete_log_file(path = "system_logs.log"):
+  try:
+    os.remove(path)
+  except Exception as e:
+    print("file not found")
 # Usage
 directory_path = 'converted_images'
 delete_files_in_directory(directory_path)

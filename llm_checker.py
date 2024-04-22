@@ -3,6 +3,9 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain_mistralai import ChatMistralAI
+from langchain_openai import ChatOpenAI
+
+
 from dotenv.main import load_dotenv
 
 load_dotenv()
@@ -39,8 +42,8 @@ def get_llm_help(end_string):
         """
     prompt = ChatPromptTemplate.from_template(template)
 
-    llm = ChatMistralAI(
-        model="mistral-medium-latest", mistral_api_key=os.getenv("MISTRAL_API_KEY")
+    llm = ChatOpenAI(
+        model="gpt-3.5-turbo-1106", api_key=os.getenv("OPENAI_API_KEY")
     )  # type: ignore
     chain = RunnablePassthrough.assign() | prompt | llm | StrOutputParser()
 

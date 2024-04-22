@@ -3,8 +3,17 @@ import re
 def req_to_sing(text):
     pattern = r"REQUESTOR(.*?)SINGLE SOURCE JUSTIFICATION"
     matches = re.findall(pattern, text, re.DOTALL | re.IGNORECASE)
-    extracted_data = [match.strip() for match in matches][0]
-    return extracted_data
+    if matches:
+        extracted_data = [match.strip() for match in matches][0]
+        return extracted_data
+    else:
+        pattern = r"REQUESTOR(.*?)APPROVAL FOR EXCEPTIONS"
+        matches = re.findall(pattern, text, re.DOTALL | re.IGNORECASE)
+        if matches:
+            extracted_data = [match.strip() for match in matches][0]
+            return extracted_data
+        else:
+            return text
 
 
 def convert_list_values_to_string(input_dict):
@@ -15,11 +24,15 @@ def convert_list_values_to_string(input_dict):
 
 
 def extract_data_between_words(text, word1, word2):
+    # print(text)
+    # print("_______________________________")
+    # print(word1)
     pattern = re.compile(
         r"{}(.*?){}".format(re.escape(word1), re.escape(word2)), re.DOTALL
     )
-    matches = pattern.findall(text)
-    return word1 + matches[0]
+    if pattern:
+        matches = pattern.findall(text)
+        return word1 + matches[0]
 
 
 def get_detaildescription(final_text):
