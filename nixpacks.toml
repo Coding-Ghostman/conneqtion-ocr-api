@@ -22,7 +22,7 @@ cmds = [
   'mkdir glibc-2.36-install',
   'ls',
   'cd build',
-  '~/glibc/glibc-2.36/configure --prefix=$HOME/glibc/glibc-2.36-install',
+  './glibc-2.36/configure --prefix=/glibc-2.36-install',
   'make',
   'make install',
 
