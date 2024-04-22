@@ -6,7 +6,7 @@ cmds = [
   # 'nix-env -iA iconv -f https://github.com/NixOS/nixpkgs/archive/9957cd48326fe8dbd52fdc50dd2502307f188b0d.tar.gz',
   'echo "Everything OK ----------------------------------"',
   'sudo apt-get install -y software-properties-common',
-  'sudo add-apt-repository -y --remove ppa:alex-p/tesseract-ocr',
+  'sudo add-apt-repository -y --remove ppa:alex-p/tesseract-ocr5',
   'echo "Everything OK ----------------------------------"',
   'sudo apt-get install -y libtesseract-dev',
   'sudo apt-get install -y tesseract-ocr',
