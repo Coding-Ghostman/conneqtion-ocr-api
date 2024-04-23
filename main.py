@@ -35,3 +35,4 @@ async def upload_file(request: Request):
     except Exception as e:
         logger = setup_logger()
         logger.error(f"Error: " + str(e))
+        return {'error': f'An error occurred while processing the file: {e}'}
