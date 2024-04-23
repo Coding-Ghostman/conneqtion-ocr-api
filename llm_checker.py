@@ -46,7 +46,7 @@ def get_llm_help(end_string):
         model="gpt-3.5-turbo-1106", api_key=os.getenv("OPENAI_API_KEY")
     )  # type: ignore
     chain = RunnablePassthrough.assign() | prompt | llm | StrOutputParser()
-
+    
     s = chain.invoke({"end_string": end_string})
     pattern = r"\{(.+?)\}"
     matches = re.findall(pattern, s, re.DOTALL)

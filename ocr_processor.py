@@ -50,10 +50,13 @@ def extract_data_(pdf_data):
         """
     )
 
+    start_pattern = r"single\b"
+    start_match = re.search(start_pattern, complete_string, flags=re.IGNORECASE)
+
     end_pattern = r"telephone\b"
     end_match = re.search(end_pattern, complete_string, flags=re.IGNORECASE)
-    end_string = complete_string[: end_match.start()]
-
+    end_string = complete_string[start_match.end(): end_match.start()]
+    
     logger.info(
         f"""
           Extracted Data:
