@@ -6,7 +6,7 @@ from langchain_mistralai import ChatMistralAI
 from langchain_openai import ChatOpenAI
 
 
-from dotenv.main import load_dotenv
+from dotenv import load_dotenv
 
 load_dotenv()
 
