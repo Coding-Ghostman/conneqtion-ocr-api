@@ -27,6 +27,10 @@ async def upload_file(request: Request):
             return {'error': 'No file part in JSON payload'}
         pdf_data = b64decode(data['file'])
         extracted_data = extract_data_(pdf_data)
+        if "Requestor(s) Name" not in extracted_data:
+            extracted_data['Requestor(s) Name'] = extracted_data["Requestor_s_Name"]
+            del extracted_data["Requestor_s_Name"]
+            
         return extracted_data
     except Exception as e:
         logger = setup_logger()
