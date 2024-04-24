@@ -1,7 +1,7 @@
 import re, json, os
 from logger import setup_logger
 from deletor import delete_log_file, delete_files_in_directory
-from llm_checker import get_llm_help
+from llm_checker import get_llm_help, grammar_corrector
 from pdf_extractor import convert_pdf_img, extract_all_data
 from string_processor import (
     req_to_sing,
@@ -56,7 +56,7 @@ def extract_data_(pdf_data):
     end_pattern = r"telephone\b"
     end_match = re.search(end_pattern, complete_string, flags=re.IGNORECASE)
     end_string = complete_string[start_match.end(): end_match.start()]
-    
+
     logger.info(
         f"""
           Extracted Data:
@@ -65,6 +65,7 @@ def extract_data_(pdf_data):
 
         """
     )
+
     first = get_llm_help(end_string)
     val = extract_data_between_words(final_text, "Purchase", "Detailed")
 
@@ -76,11 +77,12 @@ def extract_data_(pdf_data):
 
         """
     )
-
     answer.update(first)
-    answer = make_dict(answer, val)
+    # answer = make_dict(answer, val)
     d = get_detaildescription(final_text)
-    answer.update(d)
+    final_string = val + "\n"+ str(d)
+    detailed_desc = grammar_corrector(final_string)
+    answer.update(detailed_desc)
 
     logger.info(
         f"""

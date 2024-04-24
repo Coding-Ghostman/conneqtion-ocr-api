@@ -43,10 +43,41 @@ def get_llm_help(end_string):
     prompt = ChatPromptTemplate.from_template(template)
 
     llm = ChatOpenAI(
-        model="gpt-3.5-turbo-1106", api_key=os.getenv("OPENAI_API_KEY")
+        model="gpt-3.5-turbo-1106",
+        api_key=os.getenv("OPENAI_API_KEY"),
+        model_kwargs={"response_format": {"type": "json_object"}},
     )  # type: ignore
     chain = RunnablePassthrough.assign() | prompt | llm | StrOutputParser()
-    
+
+    s = chain.invoke({"end_string": end_string})
+    pattern = r"\{(.+?)\}"
+    matches = re.findall(pattern, s, re.DOTALL)
+    json_data = "{" + matches[0] + "}"
+    json_object = json.loads(json_data)
+    json_object = convert_list_values_to_string(json_object)
+    return json_object
+
+
+def grammar_corrector(end_string):
+    template = """
+
+        The below provided data has been extracted from a single source justification form, using tesseract OCR. 
+        
+        {end_string}
+
+        You are a helpful assistant specializing in English grammar.
+        Check all the data from the above given context and fix the errors accordingly. 
+        RETURN THE DATA IN JSON FORMAT ONLY NOTHING ELSE
+        """
+    prompt = ChatPromptTemplate.from_template(template)
+
+    llm = ChatOpenAI(
+        model="gpt-3.5-turbo-1106",
+        api_key=os.getenv("OPENAI_API_KEY"),
+        model_kwargs={"response_format": {"type": "json_object"}},
+    )  # type: ignore
+    chain = RunnablePassthrough.assign() | prompt | llm | StrOutputParser()
+
     s = chain.invoke({"end_string": end_string})
     pattern = r"\{(.+?)\}"
     matches = re.findall(pattern, s, re.DOTALL)

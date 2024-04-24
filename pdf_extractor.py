@@ -2,7 +2,7 @@ import pytesseract, os, cv2
 import numpy as np
 from pdf2image import convert_from_bytes
 
-# pytesseract.pytesseract.tesseract_cmd = r'C:\Users\AtmanMishra\AppData\Local\Programs\Tesseract-OCR\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = r'C:\Users\AtmanMishra\AppData\Local\Programs\Tesseract-OCR\tesseract.exe'
 
 def convert_pdf_img(pdf_data, output_path):
     images = convert_from_bytes(pdf_data)
@@ -21,7 +21,8 @@ def preprocess_image(image_path):
 
 def extract_tables(image_path):
     preprocessed_image = preprocess_image(image_path)
-    extracted_text = pytesseract.image_to_string(preprocessed_image)
+    tess_config = r"--oem 3 --psm 12"
+    extracted_text = pytesseract.image_to_string(preprocessed_image, config = tess_config)
     lines = extracted_text.split('\n')
     tables = []
     current_table = []
