@@ -36,8 +36,8 @@ def extract_data_(pdf_data):
     end_string = complete_string[start_match.end(): end_match.start()]
 
     first = get_llm_help(end_string)
-    val = extract_data_between_words(final_text, "Purchase", "Detaited")
-    print(val)
+    val = extract_data_between_words(final_text, "Purchase", "Detailed")
+
     if first:
       answer.update(first)
     # answer = make_dict(answer, val)
