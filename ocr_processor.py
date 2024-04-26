@@ -9,9 +9,6 @@ from string_processor import (
     extract_data_between_words,
 )
 
-logger = setup_logger()
-
-
 def make_dict(dict, val):
 
     key, value = val.split(":", 1)
@@ -29,26 +26,8 @@ def extract_data_(pdf_data):
         for i, table in enumerate(tables):
             for row in table:
                 complete_string += str(row) + "\n"
-    
-    logger.info(
-        f"""
-          Extracted Data 1 :
-
-          {complete_string}
-
-        """
-    )
 
     final_text = req_to_sing(complete_string)
-
-    logger.info(
-        f"""
-          Extracted Data 2:
-
-          {final_text}
-
-        """
-    )
 
     start_pattern = r"single\b"
     start_match = re.search(start_pattern, complete_string, flags=re.IGNORECASE)
@@ -57,43 +36,17 @@ def extract_data_(pdf_data):
     end_match = re.search(end_pattern, complete_string, flags=re.IGNORECASE)
     end_string = complete_string[start_match.end(): end_match.start()]
 
-    logger.info(
-        f"""
-          Extracted Data 3 :
-
-          {end_string}
-
-        """
-    )
-
     first = get_llm_help(end_string)
-    val = extract_data_between_words(final_text, "Purchase", "Detailed")
-    logger.info(
-        f"""
-          Extracted Data 4:
-
-          {val}
-
-        """
-    )
+    val = extract_data_between_words(final_text, "Purchase", "Detaited")
+    print(val)
     if first:
       answer.update(first)
     # answer = make_dict(answer, val)
     d = get_detaildescription(final_text)
     final_string = val + "\n"+ str(d)
     detailed_desc = grammar_corrector(final_string)
-    print("Hello")
     if detailed_desc:
       answer.update(detailed_desc)
-
-    logger.info(
-        f"""
-          Extracted Data 5:
-
-          {d}
-
-        """
-    )
 
     delete_files_in_directory(output_path)
     return answer

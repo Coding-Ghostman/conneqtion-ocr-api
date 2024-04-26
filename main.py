@@ -1,7 +1,7 @@
 from ocr_processor import extract_data_
 from base64 import b64decode
 from fastapi import FastAPI, HTTPException, Request
-from logger import setup_logger
+
 
 from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
@@ -29,7 +29,5 @@ async def upload_file(request: Request):
         extracted_data = extract_data_(pdf_data)
         return extracted_data
     except Exception as e:
-        logger = setup_logger()
-        logger.error(f"Error: " + str(e))
         print(e)
         return {"error": f"An error occurred while processing the file. Please try again later.: {e}"}
