@@ -30,4 +30,4 @@ async def upload_file(request: Request):
         return extracted_data
     except Exception as e:
         print(e)
-        return {"error": f"An error occurred while processing the file. Please try again later.: {e}"}
+        return {"error": f"An error occurred while processing the file: {e}"}
