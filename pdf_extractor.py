@@ -2,7 +2,7 @@ import pytesseract, os, cv2
 import numpy as np
 from pdf2image import convert_from_bytes
 
-# pytesseract.pytesseract.tesseract_cmd = r'C:\Users\AtmanMishra\AppData\Local\Programs\Tesseract-OCR\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = r'C:\Users\AtmanMishra\AppData\Local\Programs\Tesseract-OCR\tesseract.exe'
 
 def convert_pdf_img(pdf_data, output_path):
     images = convert_from_bytes(pdf_data)

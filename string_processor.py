@@ -24,9 +24,6 @@ def convert_list_values_to_string(input_dict):
 
 
 def extract_data_between_words(text, word1, word2):
-    # print(text)
-    # print("_______________________________")
-    # print(word1)
     pattern = re.compile(
         r"{}(.*?){}".format(re.escape(word1), re.escape(word2)), re.DOTALL
     )
@@ -35,16 +32,17 @@ def extract_data_between_words(text, word1, word2):
         if matches:
             return word1 + matches[0]
         else:
-            return word1 + matches
+            return word1 + ''.join(matches)
 
 
 def get_detaildescription(final_text):
     pattern = r"\bDetailed\s*(.*)"
     match = re.search(pattern, final_text)
+    key = "Detailed Description"
+    value=""
     if match:
         detailed_description = final_text[match.start() :]
         cleaned_string = re.sub(r"[^\w\s.,()\[\]]:", "", detailed_description)
         cleaned_string = cleaned_string.replace("\n", "")
         key, value = cleaned_string.split(":", 1)
-
     return {key: value}

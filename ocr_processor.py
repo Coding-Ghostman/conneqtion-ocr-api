@@ -32,7 +32,7 @@ def extract_data_(pdf_data):
     
     logger.info(
         f"""
-          Extracted Data:
+          Extracted Data 1 :
 
           {complete_string}
 
@@ -43,7 +43,7 @@ def extract_data_(pdf_data):
 
     logger.info(
         f"""
-          Extracted Data:
+          Extracted Data 2:
 
           {final_text}
 
@@ -59,7 +59,7 @@ def extract_data_(pdf_data):
 
     logger.info(
         f"""
-          Extracted Data:
+          Extracted Data 3 :
 
           {end_string}
 
@@ -68,25 +68,27 @@ def extract_data_(pdf_data):
 
     first = get_llm_help(end_string)
     val = extract_data_between_words(final_text, "Purchase", "Detailed")
-
     logger.info(
         f"""
-          Extracted Data:
+          Extracted Data 4:
 
           {val}
 
         """
     )
-    answer.update(first)
+    if first:
+      answer.update(first)
     # answer = make_dict(answer, val)
     d = get_detaildescription(final_text)
     final_string = val + "\n"+ str(d)
     detailed_desc = grammar_corrector(final_string)
-    answer.update(detailed_desc)
+    print("Hello")
+    if detailed_desc:
+      answer.update(detailed_desc)
 
     logger.info(
         f"""
-          Extracted Data:
+          Extracted Data 5:
 
           {d}
 
