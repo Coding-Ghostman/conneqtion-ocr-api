@@ -35,7 +35,7 @@ def extract_data_between_words(text, word1, word2):
             return word1 + ''.join(matches)
 
 
-def get_detaildescription(final_text,pattern= r"\bDetaited\s*(.*)"):
+def get_detaildescription(final_text,pattern= r"\bDetailed\s*(.*)"):
     
     match = re.search(pattern, final_text)
     key = "Detailed Description"
