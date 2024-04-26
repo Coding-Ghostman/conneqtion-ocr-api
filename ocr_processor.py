@@ -37,7 +37,8 @@ def extract_data_(pdf_data):
 
     first = get_llm_help(end_string)
     val = extract_data_between_words(final_text, "Purchase", "Detailed")
-
+    if len(val) <=9:
+      val = extract_data_between_words(final_text, "Purchase", "Detaited")
     if first:
       answer.update(first)
     # answer = make_dict(answer, val)
