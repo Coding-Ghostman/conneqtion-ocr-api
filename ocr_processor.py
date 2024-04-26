@@ -1,5 +1,4 @@
 import re, json, os
-from logger import setup_logger
 from deletor import delete_log_file, delete_files_in_directory
 from llm_checker import get_llm_help, grammar_corrector
 from pdf_extractor import convert_pdf_img, extract_all_data
