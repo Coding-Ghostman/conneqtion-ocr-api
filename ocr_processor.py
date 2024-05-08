@@ -1,4 +1,6 @@
 import re, json, os
+import base64
+from base64 import b64decode
 from deletor import delete_files_in_directory
 from llm_checker import get_llm_help, grammar_corrector
 from pdf_extractor import convert_pdf_img, extract_all_data, merge_pngs
@@ -20,7 +22,10 @@ def pdf2png_extract(pdf_data):
       delete_files_in_directory(output_path)
     convert_pdf_img(pdf_data, output_path)
     merge_pngs(output_path)
-    return f"{output_path}/combined_image.jpg"
+    with open(f"{output_path}/combined_image.jpg", "rb") as imagefile:
+      convert = base64.b64encode(imagefile.read())
+    delete_files_in_directory(output_path)
+    return convert
 
 def extract_data_(pdf_data):
     answer = {}

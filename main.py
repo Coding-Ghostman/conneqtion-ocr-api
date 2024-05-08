@@ -42,7 +42,8 @@ async def upload_file_pdf_png(request: Request):
             return {'error': 'No file part in JSON payload'}
         pdf_data = b64decode(data['file'])
         extracted_data = pdf2png_extract(pdf_data)
-        return FileResponse(extracted_data)
+        # return FileResponse(extracted_data)
+        return extracted_data
     except Exception as e:
         print(e)
         return {"error": f"An error occurred while processing the file: {e}"}
