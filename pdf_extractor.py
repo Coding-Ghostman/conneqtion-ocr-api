@@ -1,6 +1,7 @@
 import pytesseract, os, cv2
 import numpy as np
 from pdf2image import convert_from_bytes
+from PIL import Image
 
 # pytesseract.pytesseract.tesseract_cmd = r'C:\Users\AtmanMishra\AppData\Local\Programs\Tesseract-OCR\tesseract.exe'
 
@@ -51,3 +52,18 @@ def extract_all_data(converted_images_path = "converted_images"):
     temp_val = extract_tables(image)
     complete_data.append(temp_val)
   return complete_data
+
+def merge_pngs(output_path):
+    img1 = Image.open(f"{output_path}/page0.jpg")
+# Open the second image
+    img2 = Image.open(f"{output_path}/page1.jpg")
+    # Create a new image with the combined size
+    width = max(img1.width, img2.width)
+    height = img1.height + img2.height
+    combined_img = Image.new("RGB", (width, height))
+    # Paste the first image onto the combined image
+    combined_img.paste(img1, (0, 0))
+    # Paste the second image onto the combined image
+    combined_img.paste(img2, (0, img1.height))
+    # Save the combined image
+    combined_img.save(f"{output_path}/combined_image.jpg")
