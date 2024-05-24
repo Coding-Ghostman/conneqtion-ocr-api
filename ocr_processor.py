@@ -40,8 +40,10 @@ def extract_data_(pdf_data):
         for i, table in enumerate(tables):
             for row in table:
                 complete_string += str(row) + "\n"
+    # print(complete_string)
 
     final_text = req_to_sing(complete_string)
+    # print(final_text)
 
     start_pattern = r"single\b"
     start_match = re.search(start_pattern, complete_string, flags=re.IGNORECASE)
@@ -51,19 +53,30 @@ def extract_data_(pdf_data):
     end_string = complete_string[start_match.end(): end_match.start()]
 
     first = get_llm_help(end_string)
-    val = extract_data_between_words(final_text, "Purchase", "Detailed")
-    if len(val) <=9:
-      val = extract_data_between_words(final_text, "Purchase", "Detaited")
+
+    val = extract_data_between_words(final_text, "Purchase/Project", "Detailed")
+    if len(val) <= 9:
+      val = extract_data_between_words(final_text, "Purchase/Project", "Detaited")
       pattern = r"\bDetaited\s*(.*)"
+    
+    # print(answer)
+    # print("???????????????????????????????????????????????????????")
+    
     if first:
       answer.update(first)
+    answer["Purchase/Project Summary"] = val
     # answer = make_dict(answer, val)
-    
+    # print(answer)
+    # print(answer)
+    # print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
     d = get_detaildescription(final_text)
     final_string = val + "\n"+ str(d)
+    print(d)
     detailed_desc = grammar_corrector(final_string)
+    # print(detailed_desc)
     if detailed_desc:
       answer.update(detailed_desc)
-
+    # print(answer)
+    print("__________________________________________________________")
     # delete_files_in_directory(output_path)
     return answer

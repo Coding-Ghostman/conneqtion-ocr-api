@@ -1,7 +1,28 @@
 import re
+from fuzzywuzzy import fuzz
+
+# def extract_data_between_words(text, word1, word2, threshold=80):
+#     # Find the best match for word1 in the text
+#     print("lessssss gooooooooooooooooooooooooooooooooooooooooooooooooooooooooo")
+#     best_match_word1 = max([(fuzz.ratio(word1, w), w) for w in text.split()], key=lambda x: x[0])
+#     if best_match_word1[0] < threshold:
+#         return f"{word1} not found in the text"
+
+#     # Find the best match for word2 after the best match for word1
+#     start_index = text.index(best_match_word1[1]) + len(best_match_word1[1])
+#     remaining_text = text[start_index:]
+#     best_match_word2 = max([(fuzz.ratio(word2, w), w) for w in remaining_text.split()], key=lambda x: x[0])
+#     if best_match_word2[0] < threshold:
+#         return f"{word2} not found in the text after {best_match_word1[1]}"
+
+#     # Extract the data between the best matches
+#     end_index = remaining_text.index(best_match_word2[1]) + start_index + len(best_match_word2[1])
+#     extracted_data = text[start_index:end_index]
+
+#     return f"{best_match_word1[1]} {extracted_data} {best_match_word2[1]}"
 
 def req_to_sing(text):
-    pattern = r"REQUESTOR(.*?)SINGLE SOURCE JUSTIFICATION"
+    pattern = r"REQUESTOR(.*?)VENDOR SELECTION"
     matches = re.findall(pattern, text, re.DOTALL | re.IGNORECASE)
     if matches:
         extracted_data = [match.strip() for match in matches][0]
