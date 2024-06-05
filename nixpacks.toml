@@ -10,6 +10,7 @@ cmds = [
   "wget https://github.com/tesseract-ocr/tesseract/archive/refs/tags/5.3.4.tar.gz",
   "tar -xzf 5.3.4.tar.gz",
   "cd tesseract-5.3.4",
+  "ls",
   "./autogen.sh",
   "./configure",
   "./configure --prefix=/usr/local",
