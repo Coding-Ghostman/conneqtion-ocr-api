@@ -1,6 +1,6 @@
 [phases.setup]
 nixPkgs = ['python310','glibc']
-aptPkgs = ["...", "wget",'ffmpeg','espeak','libavcodec-extra','libsm6','libxext6','libc6','libgl1-mesa-glx','libglib2.0-0','libsm6','libxext6','libxrender-dev','freeglut3-dev','libgtk2.0-dev','libgl1-mesa-glx','poppler-utils', 'libtool']
+aptPkgs = ["...", "wget",'ffmpeg','espeak','libavcodec-extra','libsm6','libxext6','libc6','libgl1-mesa-glx','libglib2.0-0','libsm6','libxext6','libxrender-dev','freeglut3-dev','libgtk2.0-dev','libgl1-mesa-glx','poppler-utils', 'libtool', 'automake', 'autoconf']
 cmds = [
   'echo "Everything OK ----------------------------------"',
   'sudo apt-get install -y software-properties-common',
