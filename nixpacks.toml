@@ -11,7 +11,7 @@ cmds = [
   'sudo apt-get -y update',
   'echo "Everything OK ----------------------------------"',
   # 'sudo apt-get install -y libtesseract-dev',
-  'sudo apt-get install -y tesseract-ocr=5.3.4+git6348-2b07505e-1ppa1~jammy1',
+  'sudo apt-get install -y tesseract-ocr',
   'sudo apt-get install -y tesseract-ocr-eng',
   'sudo apt-get -y update',
   'ldd --version',
