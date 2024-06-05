@@ -1,5 +1,5 @@
 import re
-from fuzzywuzzy import fuzz
+# from fuzzywuzzy import fuzz
 
 # def extract_data_between_words(text, word1, word2, threshold=80):
 #     # Find the best match for word1 in the text
