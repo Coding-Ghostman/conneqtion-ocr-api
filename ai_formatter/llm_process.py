@@ -104,6 +104,7 @@ def date_format_convertor(date_, format_):
 
 def currency_format_check(currency_1, currency_2):
     llm = ChatMistralAI(api_key=mistral_ai_key, model_kwargs={"response_format": {"type": "json_object"}},model="open-mixtral-8x22b")
+    print(currency_1, currency_2)
     prompt = ChatPromptTemplate.from_messages([
     ("system", "You are a helpful assistant."),
     ("user", """

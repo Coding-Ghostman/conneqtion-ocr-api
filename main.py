@@ -52,12 +52,12 @@ async def upload_file_pdf_png(request: Request):
 @app.post("/api/conneqtion/ai/updater")
 async def change_data(request: Request):
     data = await request.json()
-    # try:
-    requested_delivery_date, need_identification_date, actual_or_estimated = format_changer(data["requested_delivery_date"], data["need_identification_date"], data["actual_or_estimated"])
-    return {"requested_delivery_date" : requested_delivery_date, 
-            "need_identification_date" : need_identification_date,
-            "actual_or_estimated" : actual_or_estimated}
-    # except Exception as e:
-    #     print(e)
-    #     return {"error": f"An error occurred while processing the file: {e}"}
+    try:
+        requested_delivery_date, need_identification_date, actual_or_estimated = format_changer(data["requested_delivery_date"], data["need_identification_date"], data["actual_or_estimated"])
+        return {"requested_delivery_date" : requested_delivery_date, 
+                "need_identification_date" : need_identification_date,
+                "actual_or_estimated" : actual_or_estimated}
+    except Exception as e:
+        print(e)
+        return {"warning": "Issue a proper format please"}
     
