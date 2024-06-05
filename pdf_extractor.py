@@ -22,8 +22,8 @@ def preprocess_image(image_path):
 
 def extract_tables(image_path):
     preprocessed_image = preprocess_image(image_path)
-    # tess_config = r"--oem 3 --psm 12"
-    # extracted_text = pytesseract.image_to_string(preprocessed_image, config = tess_config)
+    tess_config = r"--oem 3 --psm 12"
+    extracted_text = pytesseract.image_to_string(preprocessed_image, config = tess_config)
     extracted_text = pytesseract.image_to_string(preprocessed_image)
     lines = extracted_text.split('\n')
     tables = []
