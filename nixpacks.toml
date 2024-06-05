@@ -11,9 +11,9 @@ cmds = [
   "tar -xzf 5.3.4.tar.gz",
   "cd tesseract-5.3.4",
   "ls",
-  "./autogen.sh",
-  "./configure",
-  "./configure --prefix=/usr/local",
+  "autogen.sh",
+  "configure",
+  "configure --prefix=/usr/local",
   "make",
   "sudo make install",
   
