@@ -2,7 +2,7 @@ from ocr_processor import extract_data_, pdf2png_extract
 from base64 import b64decode
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse
-from ai_formatter.format_main import format_changer
+# from ai_formatter.format_main import format_changer
 
 
 from fastapi.middleware.cors import CORSMiddleware
@@ -49,15 +49,15 @@ async def upload_file_pdf_png(request: Request):
         print(e)
         return {"error": f"An error occurred while processing the file: {e}"}
     
-@app.post("/api/conneqtion/ai/updater")
-async def change_data(request: Request):
-    data = await request.json()
-    try:
-        requested_delivery_date, need_identification_date, actual_or_estimated = format_changer(data["requested_delivery_date"], data["need_identification_date"], data["actual_or_estimated"])
-        return {"requested_delivery_date" : requested_delivery_date, 
-                "need_identification_date" : need_identification_date,
-                "actual_or_estimated" : actual_or_estimated}
-    except Exception as e:
-        print(e)
-        return {"warning": "Issue a proper format please"}
+# @app.post("/api/conneqtion/ai/updater")
+# async def change_data(request: Request):
+#     data = await request.json()
+#     try:
+#         requested_delivery_date, need_identification_date, actual_or_estimated = format_changer(data["requested_delivery_date"], data["need_identification_date"], data["actual_or_estimated"])
+#         return {"requested_delivery_date" : requested_delivery_date, 
+#                 "need_identification_date" : need_identification_date,
+#                 "actual_or_estimated" : actual_or_estimated}
+#     except Exception as e:
+#         print(e)
+#         return {"warning": "Issue a proper format please"}
     
