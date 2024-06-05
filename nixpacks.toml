@@ -10,7 +10,7 @@ cmds = [
   "sudo add-apt-repository ppa:alex-p/tesseract-ocr-devel",
   'echo "Everything OK ----------------------------------"',
   # 'sudo apt-get install -y libtesseract-dev',
-  'sudo apt-get install -y tesseract-ocr=5.3.4-44-g2b07',
+  'sudo apt-get install -y tesseract-ocr',
   'sudo apt-get install -y tesseract-ocr-eng',
   'sudo apt-get -y update',
   'ldd --version',
