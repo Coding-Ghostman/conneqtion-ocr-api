@@ -59,6 +59,8 @@ def get_llm_help(end_string):
 
 
 def grammar_corrector(end_string):
+    print("end stringgggg")
+    print(end_string)
     template = """
 
         The below provided data has been extracted from a single source justification form, using tesseract OCR. 
@@ -91,4 +93,4 @@ def grammar_corrector(end_string):
         print("###############################")
         print(f"Exception at grammar corrector:{e}")
         print("###############################")
-        return {"Purchase/Project Summary":"","Detailed Description":""}
+        return None
