@@ -59,16 +59,16 @@ def extract_data_(pdf_data):
       val = extract_data_between_words(final_text, "Purchase/Project", "Detaited")
       pattern = r"\bDetaited\s*(.*)"
     
-    # print(answer)
-    # print("???????????????????????????????????????????????????????")
+    print(answer)
+    print("???????????????????????????????????????????????????????")
     
     if first:
       answer.update(first)
     answer["Purchase/Project Summary"] = val
     # answer = make_dict(answer, val)
     # print(answer)
-    # print(answer)
-    # print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+    print(answer)
+    print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
     d = get_detaildescription(final_text)
     final_string = val + "\n"+ str(d)
     print(d)
@@ -76,7 +76,7 @@ def extract_data_(pdf_data):
     # print(detailed_desc)
     if detailed_desc:
       answer.update(detailed_desc)
-    # print(answer)
+    print(answer)
     print("__________________________________________________________")
     # delete_files_in_directory(output_path)
     return answer
