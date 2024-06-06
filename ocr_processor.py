@@ -73,9 +73,11 @@ def extract_data_(pdf_data):
     final_string = val + "\n"+ str(d)
     print(d)
     detailed_desc = grammar_corrector(final_string)
-    # print(detailed_desc)
+    print(detailed_desc)
     if detailed_desc:
       answer.update(detailed_desc)
+    else:
+      answer.update(d)
     print(answer)
     print("__________________________________________________________")
     # delete_files_in_directory(output_path)
