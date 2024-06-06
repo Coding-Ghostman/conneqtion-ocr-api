@@ -40,11 +40,13 @@ def extract_data_(pdf_data):
         for i, table in enumerate(tables):
             for row in table:
                 complete_string += str(row) + "\n"
-    # print(complete_string)
-
+    print("{{{{{{{{{{{{{{{{{{{{{{")
+    print(complete_string)
+    print("}}}}}}}}}}}}}}}}}}}}}}")
     final_text = req_to_sing(complete_string)
-    # print(final_text)
-
+    print("++++++++++++++++++++++")
+    print(final_text)
+    print("+++++++++++++++++++++++")
     start_pattern = r"single\b"
     start_match = re.search(start_pattern, complete_string, flags=re.IGNORECASE)
 
