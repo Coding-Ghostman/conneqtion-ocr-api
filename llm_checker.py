@@ -88,4 +88,7 @@ def grammar_corrector(end_string):
         json_object = convert_list_values_to_string(json_object)
         return json_object
     except Exception as e:
+        print("###############################")
+        print(f"Exception at grammar corrector:{e}")
+        print("###############################")
         return {"Purchase/Project Summary":"","Detailed Description":""}
