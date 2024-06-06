@@ -50,9 +50,9 @@ def get_llm_help(end_string):
     chain = RunnablePassthrough.assign() | prompt | llm | StrOutputParser()
 
     s = chain.invoke({"end_string": end_string})
-    pattern = r"\{(.+?)\}"
-    matches = re.findall(pattern, s, re.DOTALL)
-    json_data = "{" + matches[0] + "}"
+    # pattern = r"\{(.+?)\}"
+    # matches = re.findall(pattern, s, re.DOTALL)
+    # json_data = "{" + matches[0] + "}"
     json_object = json.loads(json_data)
     json_object = convert_list_values_to_string(json_object)
     return json_object
