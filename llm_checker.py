@@ -3,13 +3,16 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain_mistralai import ChatMistralAI
-from langchain_openai import ChatOpenAI
 
 
 from dotenv import load_dotenv
 
 load_dotenv()
-
+llm = ChatMistralAI(
+    model="open-mistral-nemo",
+    api_key=os.getenv("MISTRAL_API_KEY"),
+    model_kwargs={"response_format": {"type": "json_object"}},
+)  # type: ignore
 
 def convert_list_values_to_string(input_dict):
     for key, value in input_dict.items():
@@ -41,12 +44,6 @@ def get_llm_help(end_string):
         Please map the relevant data given in the example output and return a json. DO NOT GIVE ANYTHING ELSE OTHER THAN A JSON
         """
     prompt = ChatPromptTemplate.from_template(template)
-
-    llm = ChatOpenAI(
-        model="gpt-3.5-turbo-1106",
-        api_key=os.getenv("OPENAI_API_KEY"),
-        model_kwargs={"response_format": {"type": "json_object"}},
-    )  # type: ignore
     chain = RunnablePassthrough.assign() | prompt | llm | StrOutputParser()
 
     s = chain.invoke({"end_string": end_string})
@@ -75,11 +72,7 @@ def grammar_corrector(end_string):
         """
     prompt = ChatPromptTemplate.from_template(template)
 
-    llm = ChatOpenAI(
-        model="gpt-3.5-turbo-1106",
-        api_key=os.getenv("OPENAI_API_KEY"),
-        model_kwargs={"response_format": {"type": "json_object"}},
-    )  # type: ignore
+
     chain = RunnablePassthrough.assign() | prompt | llm | StrOutputParser()
     try:
         s = chain.invoke({"end_string": end_string})
